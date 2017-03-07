@@ -3,7 +3,7 @@
  * Dribbble API for PHP.
  *
  * @author   Alexander Pushkarev <axp-dev@yandex.com>
- * @link     https://github.com/axp-dev/dribbble-api
+ * @link     https://github.com/axp-dev/Dibbble-API
  * @license  MIT License
  * @version  1.0
  */
