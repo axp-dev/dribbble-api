@@ -1,13 +1,13 @@
 <?php
+namespace AXP\DribbleApi;
+
 /**
  * Dribbble API for PHP.
  *
  * @author   Alexander Pushkarev <axp-dev@yandex.com>
  * @link     https://github.com/axp-dev/Dibbble-API
  * @license  MIT License
- * @version  1.0
  */
-
 class DribbbleApi {
     protected static $endpoint = 'https://api.dribbble.com/v1';
     protected static $access_token;
