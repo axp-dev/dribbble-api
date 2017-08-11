@@ -1,0 +1,24 @@
+{
+  "name": "axp-dev/dribbble-api",
+  "description": "Simple php library for dribbble",
+  "homepage": "https://github.com/axp-dev/dribbble-api",
+  "keywords": ["dribbble","library","api"],
+  "version": "1.5.0",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexander Pushkarev",
+      "email": "axp-dev@yandex.com",
+      "homepage": "https://github.com/axp-dev"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "AXP\\DribbleApi\\": "src"
+    }
+  },
+  "minimum-stability": "dev"
+}

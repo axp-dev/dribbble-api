@@ -34,7 +34,9 @@ Simple php library for [dribbble api](https://dribbble.com)
 
 ## Start
 ### Composer
-TODO: Add package to repository
+```
+$ composer require axp-dev/dribbble-api
+```
 
 ### Initialization
 ```php
