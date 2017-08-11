@@ -45,117 +45,117 @@ $client = new DribbbleApi($token);
 ## Usage
 ### Get a bucket
 ```php
-public function getBuckets($id)
+public function getBuckets($id) : array
 ```
 
 ### List shots for a bucket
 ```php
-public function getBucketsShots($id)
+public function getBucketsShots($id) : array
 ```
 
 ### Get a project
 ```php
-public function getProjects($id)
+public function getProjects($id) : array
 ```
 
 ### List shots for a project
 ```php
-public function getProjectsShots($id)
+public function getProjectsShots($id) : array
 ```
 
 ### Get a shot
 ```php
-public function getProjectsShots($id)
+public function getProjectsShots($id) : array
 ```
 
 ### List shots
 ```php
-public function getShots($params = [])
+public function getShots($params = []) : array
 ```
 
 ### List attachments for a shot
 ```php
-public function getShotsAttachments($id)
+public function getShotsAttachments($id) : array
 ```
 
 ### List buckets for a shot
 ```php
-public function getShotsBuckets($id)
+public function getShotsBuckets($id) : array
 ```
 
 ### List comments for a shot
 ```php
-public function getShotsComments($id)
+public function getShotsComments($id) : array
 ```
 
 ### List the likes for a shot
 ```php
-public function getShotsLikes($id)
+public function getShotsLikes($id) : array
 ```
 
 ### List projects for a shot
 ```php
-public function getShotsProjects($id)
+public function getShotsProjects($id) : array
 ```
 
 ### List rebounds for a shot
 ```php
-public function getShotsRebounds($id)
+public function getShotsRebounds($id) : array
 ```
 
 ### List a teams members
 ```php
-public function getTeamsMembers($id)
+public function getTeamsMembers($id) : array
 ```
 
 ### List shots for a team
 ```php
-public function getTeamsShots($id)
+public function getTeamsShots($id) : array
 ```
 
 ### Get a single user
 ```php
-public function getUsers($id)
+public function getUsers($id) : array
 ```
 
 ### List a users buckets
 ```php
-public function getUsersBuckets($id)
+public function getUsersBuckets($id) : array
 ```
 
 ### List followers of a user
 ```php
-public function getUsersFollowers($id)
+public function getUsersFollowers($id) : array
 ```
 
 ### List users followed by a user
 ```php
-public function getUsersFollowing($id)
+public function getUsersFollowing($id) : array
 ```
 
 ### List shot likes for a user
 ```php
-public function getUsersLikes($id)
+public function getUsersLikes($id) : array
 ```
 
 ### List a users projects
 ```php
-public function getUsersProjects($id)
+public function getUsersProjects($id) : array
 ```
 
 ### List shots for a user
 ```php
-public function getUsersShots($id)
+public function getUsersShots($id) : array
 ```
 
 ### List a users teams
 ```php
-public function getUsersTeams($id)
+public function getUsersTeams($id) : array
 ```
 
 ### Show a job
 ```php
-public function getJobs($id)
+public function getJobs($id) : array
 ```
 
 ## Author
