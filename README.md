@@ -1,4 +1,8 @@
 # Dribbble API for PHP
+[![Latest Stable Version](https://poser.pugx.org/axp-dev/dribbble-api/v/stable)](https://packagist.org/packages/axp-dev/dribbble-api)
+[![Latest Unstable Version](https://poser.pugx.org/axp-dev/dribbble-api/v/unstable)](https://packagist.org/packages/axp-dev/dribbble-api)
+[![License](https://poser.pugx.org/axp-dev/dribbble-api/license)](https://packagist.org/packages/axp-dev/dribbble-api)
+
 Simple php library for [dribbble api](https://dribbble.com)
 
 ## Contents
