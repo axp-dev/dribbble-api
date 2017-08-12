@@ -1,6 +1,8 @@
 <?php
 namespace AXP\DribbleApi;
 
+use AXP\DribbbleApi\Exceptions\DribbbleApiException;
+
 /**
  * Dribbble API for PHP.
  *
@@ -280,7 +282,7 @@ class DribbbleApi {
      * @param array $params
      * @param string $method
      * @return mixed
-     * @throws Exception
+     * @throws DribbbleApiException
      */
     protected function query($url, $params = [], $method = 'GET') {
         $ch = curl_init();
@@ -293,13 +295,13 @@ class DribbbleApi {
         curl_close($ch);
 
         if ($curl === false) {
-            throw new Exception(curl_error($ch), curl_errno($ch));
+            throw new DribbbleApiException(curl_error($ch), curl_errno($ch));
         }
 
         $result = json_decode($curl);
 
         if (isset($result->message)) {
-            throw new Exception($result->message, $status);
+            throw new DribbbleApiException($result->message, $status);
         }
 
         return $result;
