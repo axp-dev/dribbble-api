@@ -308,7 +308,13 @@ class DribbbleApi {
                 $options = ['query' => $args];
                 break;
             case 'POST':
-                $options = ['form_params' => $args];
+                $options = ['body' => $args];
+                break;
+            case 'PUT':
+                $options = ['body' => $args];
+                break;
+            case 'DELETE':
+                $options = ['body' => $args];
                 break;
         }
 
