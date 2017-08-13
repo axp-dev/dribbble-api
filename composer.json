@@ -1,9 +1,9 @@
 {
   "name": "axp-dev/dribbble-api",
-  "description": "Simple php library for dribbble",
+  "description": "Simple PHP library for dribbble",
   "homepage": "https://github.com/axp-dev/dribbble-api",
   "keywords": ["dribbble","library","api"],
-  "version": "1.5.0",
+  "version": "1.6.0",
   "license": "MIT",
   "authors": [
     {
