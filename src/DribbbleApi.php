@@ -11,15 +11,26 @@ use AXP\DribbbleApi\Exceptions\DribbbleApiException;
  * @license  MIT License
  */
 class DribbbleApi {
-    protected static $endpoint = 'https://api.dribbble.com/v1';
-    protected static $access_token;
+    /**
+     * Api url
+     *
+     * @var string
+     */
+    protected $endpoint = 'https://api.dribbble.com/v1';
+
+    /**
+     * Access token
+     *
+     * @var string
+     */
+    protected $access_token;
 
     /**
      * DribbbleApi constructor.
      * @param $token
      */
     function __construct($token) {
-        self::$access_token = $token;
+        $this->access_token = $token;
     }
 
     /**
@@ -285,8 +296,9 @@ class DribbbleApi {
      * @throws DribbbleApiException
      */
     protected function query($url, $params = [], $method = 'GET') {
+        $toUrl = $this->endpoint . $url . '?' . http_build_query(array_merge($params, ['access_token' => $this->access_token]), null, '&');
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, self::$endpoint . $url . '?' . http_build_query(array_merge($params, ['access_token' => self::$access_token]), null, '&'));
+        curl_setopt($ch, CURLOPT_URL, $toUrl);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $curl = curl_exec($ch);
@@ -298,7 +310,7 @@ class DribbbleApi {
             throw new DribbbleApiException(curl_error($ch), curl_errno($ch));
         }
 
-        $result = json_decode($curl);
+        $result = json_decode($curl, true);
 
         if (isset($result->message)) {
             throw new DribbbleApiException($result->message, $status);
