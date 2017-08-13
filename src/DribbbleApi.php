@@ -1,7 +1,9 @@
 <?php
-namespace AXP\DribbleApi;
+namespace AXP\DribbbleApi;
 
 use AXP\DribbbleApi\Exceptions\DribbbleApiException;
+use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Exception\ClientException;
 
 /**
  * Dribbble API for PHP.
@@ -289,33 +291,35 @@ class DribbbleApi {
     /**
      * HTTP request
      *
-     * @param $url
-     * @param array $params
+     * @param string $slug
+     * @param array  $params
      * @param string $method
+     *
      * @return mixed
      * @throws DribbbleApiException
      */
-    protected function query($url, $params = [], $method = 'GET') {
-        $toUrl = $this->endpoint . $url . '?' . http_build_query(array_merge($params, ['access_token' => $this->access_token]), null, '&');
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $toUrl);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    protected function query($slug, $params = [], $method = 'GET') {
+        $url = $this->endpoint . $slug;
+        $args = array_merge($params, ['access_token' => $this->access_token]);
+        $options = [];
 
-        $curl = curl_exec($ch);
-        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-        curl_close($ch);
-
-        if ($curl === false) {
-            throw new DribbbleApiException(curl_error($ch), curl_errno($ch));
+        switch ($method) {
+            case 'GET':
+                $options = ['query' => $args];
+                break;
+            case 'POST':
+                $options = ['form_params' => $args];
+                break;
         }
 
-        $result = json_decode($curl, true);
+        try {
+            $client = new GuzzleClient();
+            $response = $client->request($method, $url, $options);
+            $result = json_decode($response->getBody(), true);
 
-        if (isset($result->message)) {
-            throw new DribbbleApiException($result->message, $status);
+            return $result;
+        } catch (ClientException $e) {
+            throw new DribbbleApiException($e->getMessage());
         }
-
-        return $result;
     }
 }
