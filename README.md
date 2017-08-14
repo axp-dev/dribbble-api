@@ -77,7 +77,7 @@ public function getProjectsShots($id) : array
 
 ### Get a shot
 ```php
-public function getProjectsShots($id) : array
+public function getShot($id) : array
 ```
 
 ### List shots
