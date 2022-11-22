@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AXP\DribbbleApi\Exceptions;
 
-use Exception;
-
-class DribbbleApiException extends Exception
+class DribbbleApiException extends \RuntimeException
 {
 
 }
