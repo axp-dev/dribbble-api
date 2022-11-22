@@ -3,171 +3,135 @@
 [![Latest Unstable Version](https://poser.pugx.org/axp-dev/dribbble-api/v/unstable)](https://packagist.org/packages/axp-dev/dribbble-api)
 [![License](https://poser.pugx.org/axp-dev/dribbble-api/license)](https://packagist.org/packages/axp-dev/dribbble-api)
 
-Simple php library for [dribbble api](https://dribbble.com)
+Simple php library for [dribbble](https://dribbble.com) api v2.
 
 ## Contents
-1. [Start](#start)
-    + [Composer](#composer)
-    + [Initialization](#initialization)
-2. [Usage](#usage)
-    + Buckets
-        + [Get a bucket](#get-a-bucket)
-        + [List shots for a bucket](#list-shots-for-a-bucket)
-    + Projects
-        + [Get a project](#get-a-project)
-        + [List shots for a project](#list-shots-for-a-project)
-    + Shots
-        + [Get a shot](#get-a-shot)
-        + [List shots](#list-shots)
-        + [List attachments for a shot](#list-attachments-for-a-shot)
-        + [List buckets for a shot](#list-buckets-for-a-shot)
-        + [List comments for a shot](#list-comments-for-a-shot)
-        + [List the likes for a shot](#list-the-likes-for-a-shot)
-        + [List projects for a shot](#list-projects-for-a-shot)
-        + [List rebounds for a shot](#list-rebounds-for-a-shot)
-    + Teams
-        + [List a teams members](#list-a-teams-members)
-        + [List shots for a team](#list-shots-for-a-team)
-    + Users
-        + [Get a single user](#get-a-single-user)
-        + [List a users buckets](#list-a-users-buckets)
-        + [List followers of a user](#list-followers-of-a-user)
-        + [List users followed by a user](#list-users-followed-by-a-user)
-        + [List shot likes for a user](#list-shot-likes-for-a-user)
-        + [List a users projects](#list-a-users-projects)
-        + [List shots for a user](#list-shots-for-a-user)
-        + [List a users teams](#list-a-users-teams)
-    + Jobs
-        + [Show a job](#show-a-job)
-3. [Author](#author)
-4. [License](#license)
+1. [Installation](#installation)
+2. [Initialization](#initialization)
+3. [Usage](#usage)
+   + Attachments
+     + [Create an attachment](#create-an-attachment)
+     + [Delete an attachment](#delete-an-attachment)
+   + Projects
+     + [List projects](#list-projects)
+     + [Create a project](#create-a-project)
+     + [Update a project](#update-a-project)
+     + [Delete a project](#delete-a-project)
+   + Shots
+      + [List shots](#list-shots)
+      + [Get a shot](#get-a-shot)
+      + [Create a shot](#create-a-shot)
+      + [Update a shot](#update-a-shot)
+      + [Delete a shot](#delete-a-shot)
+   + User
+      + [Get the authenticated user](#get-the-authenticated-user)
+   + Jobs
+      + [Create a job](#create-a-job)
+      + [Update a job](#update-a-job)
+      + [Show a job](#show-a-job)
+4. [Author](#author)
+5. [License](#license)
 
-## Start
-### Composer
-```
+## Installation
+You can install this library by using composer
+```bash
 $ composer require axp-dev/dribbble-api
 ```
 
-### Initialization
+## Initialization
 ```php
-$token  = '...';
-$client = new DribbbleApi($token);
+$authToken = getenv('DRIBBBLE_AUTH_TOKEN');
+
+$dribbble = AXP\DribbbleApi\DribbbleApi::builder()
+    ->setAuthToken($authToken)
+    ->build();
+
+$response = $dribbble->getProjectsList();
 ```
 
 ## Usage
-### Get a bucket
+### Attachments
+#### Create an attachment
 ```php
-public function getBuckets($id) : array
+public function createAttachment(int $shotId, mixed $file): HeaderResponse
+public function createAttachmentPromise(int $shotId, mixed $file): PromiseInterface
+```
+#### Delete an attachment
+```php
+public function deleteAttachment(int $shotId, int $attachmentId): HeaderResponse
+public function deleteAttachmentPromise(int $shotId, int $attachmentId): PromiseInterface
 ```
 
-### List shots for a bucket
+### Projects
+#### List projects
 ```php
-public function getBucketsShots($id) : array
+public function getProjectsList(): ProjectsListResponse
+public function getProjectsListPromise(): PromiseInterface
+```
+#### Create a project
+```php
+public function createProject(array $params): ProjectResponse
+public function createProjectPromise(array $params): PromiseInterface
+```
+#### Update a project
+```php
+public function updateProject(int $projectId, array $params): ProjectResponse
+public function updateProjectPromise(int $projectId, array $params): PromiseInterface
+```
+#### Delete a project
+```php
+public function deleteProject(int $projectId): ProjectResponse
+public function deleteProjectPromise(int $projectId): PromiseInterface
 ```
 
-### Get a project
+### Shots
+#### List shots
 ```php
-public function getProjects($id) : array
+public function getShotsList(): ShortsListResponse
+public function getShotsListPromise(): PromiseInterface
+```
+#### Get a shot
+```php
+public function getShot(int $shotId): ShortResponse
+public function getShotPromise(int $shotId): PromiseInterface
+```
+#### Create a shot
+```php
+public function createShot(array $params): ShortResponse
+public function createShotPromise(array $params): PromiseInterface
+```
+#### Update a shot
+```php
+public function updateShot(int $shotId, array $params): ShortResponse
+public function updateShotPromise(int $shotId, array $params): PromiseInterface
+```
+#### Delete a shot
+```php
+public function deleteShot(int $shotId): HeaderResponse
+public function deleteShotPromise(int $shotId): PromiseInterface
+```
+### User
+#### Get the authenticated user
+```php
+public function getUser(): UserResponse
+public function getUserPromise(): PromiseInterface
 ```
 
-### List shots for a project
+### Jobs
+#### Create a job
 ```php
-public function getProjectsShots($id) : array
+public function createJob(array $params): JobResponse
+public function createJobPromise(array $params): PromiseInterface
 ```
-
-### Get a shot
+#### Update a job
 ```php
-public function getShot($id) : array
+public function updateJob(int $jobId, array $params): JobResponse
+public function updateJobPromise(int $jobId, array $params): PromiseInterface
 ```
-
-### List shots
+#### Show a job
 ```php
-public function getShots($params = []) : array
-```
-
-### List attachments for a shot
-```php
-public function getShotsAttachments($id) : array
-```
-
-### List buckets for a shot
-```php
-public function getShotsBuckets($id) : array
-```
-
-### List comments for a shot
-```php
-public function getShotsComments($id) : array
-```
-
-### List the likes for a shot
-```php
-public function getShotsLikes($id) : array
-```
-
-### List projects for a shot
-```php
-public function getShotsProjects($id) : array
-```
-
-### List rebounds for a shot
-```php
-public function getShotsRebounds($id) : array
-```
-
-### List a teams members
-```php
-public function getTeamsMembers($id) : array
-```
-
-### List shots for a team
-```php
-public function getTeamsShots($id) : array
-```
-
-### Get a single user
-```php
-public function getUsers($id) : array
-```
-
-### List a users buckets
-```php
-public function getUsersBuckets($id) : array
-```
-
-### List followers of a user
-```php
-public function getUsersFollowers($id) : array
-```
-
-### List users followed by a user
-```php
-public function getUsersFollowing($id) : array
-```
-
-### List shot likes for a user
-```php
-public function getUsersLikes($id) : array
-```
-
-### List a users projects
-```php
-public function getUsersProjects($id) : array
-```
-
-### List shots for a user
-```php
-public function getUsersShots($id) : array
-```
-
-### List a users teams
-```php
-public function getUsersTeams($id) : array
-```
-
-### Show a job
-```php
-public function getJobs($id) : array
+public function getJob(int $jobId): JobResponse
+public function getJobPromise(int $jobId): PromiseInterface
 ```
 
 ## Author
